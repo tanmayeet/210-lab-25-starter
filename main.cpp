@@ -24,7 +24,7 @@ int main() {
   }
   fin1.close();
   auto end_v = high_resolution_clock::now();
-  auto duration_v = duration_cast<milliseconds>(end_v - start_v);
+  auto duration_v = duration_cast<microseconds>(end_v - start_v);
 
   // list
   auto start_l = high_resolution_clock::now();
@@ -35,7 +35,7 @@ int main() {
   }
   fin2.close();
   auto end_l = high_resolution_clock::now();
-  auto duration_l = duration_cast<milliseconds>(end_l - start_l);
+  auto duration_l = duration_cast<microseconds>(end_l - start_l);
 
   // set
   auto start_s = high_resolution_clock::now();
@@ -46,7 +46,7 @@ int main() {
   }
   fin3.close();
   auto end_s = high_resolution_clock::now();
-  auto duration_s = duration_cast<milliseconds>(end_s - start_s);
+  auto duration_s = duration_cast<microseconds>(end_s - start_s);
 
   // Race 2: Sorting
 
@@ -54,13 +54,13 @@ int main() {
   auto start_sv = high_resolution_clock::now();
   sort(v.begin(), v.end());
   auto end_sv = high_resolution_clock::now();
-  auto vector_sort = duration_cast<milliseconds>(end_sv - start_sv);
+  auto vector_sort = duration_cast<microseconds>(end_sv - start_sv);
 
   // list
   auto start_sl = high_resolution_clock::now();
   l.sort();
   auto end_sl = high_resolution_clock::now();
-  auto list_sort = duration_cast<milliseconds>(end_sl - start_sl);
+  auto list_sort = duration_cast<microseconds>(end_sl - start_sl);
 
   // set: already sorted by def
   long long s_sort = -1;
@@ -87,6 +87,30 @@ int main() {
   auto end_si = high_resolution_clock::now();
   auto set_insert = duration_cast<microseconds>(end_si - start_si);
 
+  // Race 4: Deleting
+
+  // vector
+  auto start_vd = high_resolution_clock::now();
+  v.erase(v.begin() + (v.size() / 2));
+  auto end_vd = high_resolution_clock::now();
+  auto vector_delete = duration_cast<microseconds>(end_vd - start_vd);
+
+  // list
+  auto start_di = high_resolution_clock::now();
+  auto mid_d = l.begin();
+  advance(mid_d, (l.size() / 2));
+  l.erase(mid_d);
+  auto end_di = high_resolution_clock::now();
+  auto list_delete = duration_cast<microseconds>(end_di - start_di);
+
+  // set
+  auto start_sd = high_resolution_clock::now();
+  auto it_d = st.begin();
+  advance(it_d, (st.size() / 2));
+  st.erase(it_d);
+  auto end_sd = high_resolution_clock::now();
+  auto set_delete = duration_cast<microseconds>(end_sd - start_sd);
+
   cout << "Operation    Vector      List       Set\n";
   cout << "Read         " << duration_v.count() << "           "
        << duration_l.count() << "          " << duration_s.count() << "\n";
@@ -94,6 +118,8 @@ int main() {
        << list_sort.count() << "          " << s_sort << "\n";
   cout << "Insert(micro)        " << vector_insert.count() << "          "
        << list_insert.count() << "         " << set_insert.count() << "\n";
+  cout << "Delete        " << vector_delete.count() << "          "
+       << list_delete.count() << "         " << set_delete.count() << "\n";
   return 0;
 }
 
