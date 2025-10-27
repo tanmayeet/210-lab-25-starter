@@ -48,9 +48,29 @@ int main() {
   auto end_s = high_resolution_clock::now();
   auto duration_s = duration_cast<milliseconds>(end_s - start_s);
 
+  // Race 2: Sorting
+
+  // vector
+  auto start_sv = high_resolution_clock::now();
+  sort(v.begin(), v.end());
+  auto end_sv = high_resolution_clock::now();
+  auto vector_sort = duration_cast<milliseconds>(end_sv - start_sv);
+
+  // list
+  auto start_sl = high_resolution_clock::now();
+  l.sort();
+  auto end_sl = high_resolution_clock::now();
+  auto list_sort = duration_cast<milliseconds>(end_sl - start_sl);
+
+  // set: already sorted by def
+  long long s_sort = -1;
+
   cout << "Operation    Vector      List       Set\n";
   cout << "Read         " << duration_v.count() << "           "
        << duration_l.count() << "          " << duration_s.count() << "\n";
+  return 0;
+  cout << "Sort         " << vector_sort.count() << "           "
+       << list_sort.count() << "          " << s_sort << "\n";
   return 0;
 }
 
