@@ -2,6 +2,7 @@
 // IDE Used: VS Code
 #include <chrono>
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <list>
 #include <set>
@@ -112,14 +113,14 @@ int main() {
   auto set_delete = duration_cast<microseconds>(end_sd - start_sd);
 
   cout << "Operation    Vector      List       Set\n";
-  cout << "Read         " << duration_v.count() << "           "
-       << duration_l.count() << "          " << duration_s.count() << "\n";
-  cout << "Sort         " << vector_sort.count() << "           "
-       << list_sort.count() << "          " << s_sort << "\n";
-  cout << "Insert(micro)        " << vector_insert.count() << "          "
-       << list_insert.count() << "         " << set_insert.count() << "\n";
-  cout << "Delete        " << vector_delete.count() << "          "
-       << list_delete.count() << "         " << set_delete.count() << "\n";
+  cout << "Read" << setw(6) << duration_v.count() << setw(6)
+       << duration_l.count() << setw(6) << duration_s.count() << "\n";
+  cout << "Sort" << vector_sort.count() << setw(6) << list_sort.count()
+       << setw(6) << s_sort << "\n";
+  cout << "Insert" << setw(6) << vector_insert.count() << setw(6)
+       << list_insert.count() << setw(6) << set_insert.count() << "\n";
+  cout << "Delete" << vector_delete.count() << setw(6) << list_delete.count()
+       << setw(6) << set_delete.count() << "\n";
   return 0;
 }
 
