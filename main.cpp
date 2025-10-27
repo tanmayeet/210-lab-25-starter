@@ -25,7 +25,6 @@ int main() {
   }
   auto end_v = high_resolution_clock::now();
   auto duration_v = duration_cast<milliseconds>(end_v - start_v);
-  std::cout << "Time taken: " << duration_v.count() << " milliseconds\n";
 
   // list
   auto start_l = high_resolution_clock::now();
@@ -37,7 +36,6 @@ int main() {
   }
   auto end_l = high_resolution_clock::now();
   auto duration_l = duration_cast<milliseconds>(end_l - start_l);
-  std::cout << "Time taken: " << duration_l.count() << " milliseconds\n";
 
   // set
   auto start_s = high_resolution_clock::now();
@@ -49,8 +47,10 @@ int main() {
   }
   auto end_s = high_resolution_clock::now();
   auto duration_s = duration_cast<milliseconds>(end_s - start_s);
-  std::cout << "Time taken: " << duration_s.count() << " milliseconds\n";
 
+  cout << "Operation    Vector      List       Set\n";
+  cout << "Read         " << duration_v.count() << duration_l.count()
+       << duration_s.count() << "\n";
   return 0;
 }
 
