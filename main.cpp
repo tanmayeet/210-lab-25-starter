@@ -21,8 +21,8 @@ int main() {
   vector<string> v;
   while (fin1 >> s) {
     v.push_back(s);
-    fin1.close();
   }
+  fin1.close();
   auto end_v = high_resolution_clock::now();
   auto duration_v = duration_cast<milliseconds>(end_v - start_v);
 
@@ -32,25 +32,25 @@ int main() {
   list<string> l;
   while (fin2 >> s) {
     l.push_back(s);
-    fin1.close();
   }
+  fin2.close();
   auto end_l = high_resolution_clock::now();
   auto duration_l = duration_cast<milliseconds>(end_l - start_l);
 
   // set
   auto start_s = high_resolution_clock::now();
   ifstream fin3(file);
-  set<string> set;
+  set<string> st;
   while (fin3 >> s) {
-    set.insert(s);
-    fin1.close();
+    st.insert(s);
   }
+  fin3.close();
   auto end_s = high_resolution_clock::now();
   auto duration_s = duration_cast<milliseconds>(end_s - start_s);
 
   cout << "Operation    Vector      List       Set\n";
-  cout << "Read         " << duration_v.count() << duration_l.count()
-       << duration_s.count() << "\n";
+  cout << "Read         " << duration_v.count() << "           "
+       << duration_l.count() << "          " << duration_s.count() << "\n";
   return 0;
 }
 
