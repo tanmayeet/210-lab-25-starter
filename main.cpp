@@ -71,7 +71,7 @@ int main() {
   auto start_vi = high_resolution_clock::now();
   v.insert(v.begin() + (v.size() / 2), "TESTCODE");
   auto end_vi = high_resolution_clock::now();
-  auto vector_insert = duration_cast<milliseconds>(end_vi - start_vi);
+  auto vector_insert = duration_cast<microseconds>(end_vi - start_vi);
 
   // list
   auto start_li = high_resolution_clock::now();
@@ -79,21 +79,21 @@ int main() {
   advance(mid, (l.size() / 2));
   l.insert(mid, "TESTCODE");
   auto end_li = high_resolution_clock::now();
-  auto list_insert = duration_cast<milliseconds>(end_li - start_li);
+  auto list_insert = duration_cast<microseconds>(end_li - start_li);
 
   // set
   auto start_si = high_resolution_clock::now();
   st.insert("TESTCODE");
   auto end_si = high_resolution_clock::now();
-  auto set_insert = duration_cast<milliseconds>(end_si - start_si);
+  auto set_insert = duration_cast<microseconds>(end_si - start_si);
 
   cout << "Operation    Vector      List       Set\n";
   cout << "Read         " << duration_v.count() << "           "
        << duration_l.count() << "          " << duration_s.count() << "\n";
   cout << "Sort         " << vector_sort.count() << "           "
        << list_sort.count() << "          " << s_sort << "\n";
-  cout << "Insert         " << vector_insert.count() << "           "
-       << list_insert.count() << "          " << set_insert.count() << "\n";
+  cout << "Insert(micro)        " << vector_insert.count() << "          "
+       << list_insert.count() << "         " << set_insert.count() << "\n";
   return 0;
 }
 
